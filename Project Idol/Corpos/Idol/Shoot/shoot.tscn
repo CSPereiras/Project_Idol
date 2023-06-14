@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b76so625ghxto"]
+
+[ext_resource type="Texture2D" uid="uid://c8ie5smc30apu" path="res://Corpos/Idol/Shoot/hadouken-hadoken-pixel-art-ryu-png-favpng-qAX6iF2bsBaZG5nPhZmZ7GYWt.png" id="1_628as"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gl24t"]
+
+[node name="Shoot" type="Area2D"]
+position = Vector2(207, 123)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gl24t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.036128, 0.0458984)
+texture = ExtResource("1_628as")

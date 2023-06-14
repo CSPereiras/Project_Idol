@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxp6j87ob5nnv"]
+
+[ext_resource type="Script" path="res://Corpos/Idol/Idol.gd" id="1_8skg5"]
+[ext_resource type="Texture2D" uid="uid://rvrk6mioih81" path="res://Corpos/Idol/6fd1563fc35d06eddc1999282e813e2e-linda-garota-de-anime-com-cabelo-roxo.png" id="2_xmk3b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l3tm3"]
+radius = 23.0
+height = 140.0
+
+[node name="Idol" type="CharacterBody2D"]
+position = Vector2(268, 186)
+collision_mask = 2
+script = ExtResource("1_8skg5")
+
+[node name="Sprite_Idol" type="Sprite2D" parent="."]
+position = Vector2(-59, -37)
+scale = Vector2(0.339111, 0.327637)
+texture = ExtResource("2_xmk3b")
+flip_h = true
+
+[node name="Colisao_Idol" type="CollisionShape2D" parent="."]
+position = Vector2(-54, -32)
+shape = SubResource("CapsuleShape2D_l3tm3")
