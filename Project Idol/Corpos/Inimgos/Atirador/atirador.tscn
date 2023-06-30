@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnnkejecjospn"]
+
+[ext_resource type="Texture2D" uid="uid://bgsk8ppsvxyn4" path="res://Corpos/Inimgos/Atirador/cyberpunk-robot-holding-gun-isolated-3d-render-png.png" id="1_eicyf"]
+[ext_resource type="Script" path="res://Corpos/Inimgos/Atirador/atirador.gd" id="1_w0ejv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_haidc"]
+size = Vector2(44, 158)
+
+[node name="Atirador" type="RigidBody2D"]
+script = ExtResource("1_w0ejv")
+
+[node name="CollisionAtirador" type="CollisionShape2D" parent="."]
+position = Vector2(3, 12)
+shape = SubResource("RectangleShape2D_haidc")
+
+[node name="SpriteAtirador" type="Sprite2D" parent="."]
+position = Vector2(3, 12)
+scale = Vector2(0.140948, 0.105208)
+texture = ExtResource("1_eicyf")
+
+[node name="PosicaoArma" type="Marker2D" parent="."]
+position = Vector2(-58, -50)

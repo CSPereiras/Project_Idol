@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://yrykvn4k4pn3"]
+
+[ext_resource type="Texture2D" uid="uid://b8y7d2c045hov" path="res://Recursos_Fase/Plataformas/Caixa/kisspng-wooden-box-packaging-and-labeling-boks-5b394d58916133.9477494515304820085955.png" id="1_uld42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mncva"]
+size = Vector2(117, 129)
+
+[node name="Caixa" type="StaticBody2D"]
+collision_layer = 3
+
+[node name="ColisaoCaixa" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 2)
+shape = SubResource("RectangleShape2D_mncva")
+
+[node name="SpriteCaixa" type="Sprite2D" parent="."]
+position = Vector2(1, 5)
+scale = Vector2(0.164649, 0.174417)
+texture = ExtResource("1_uld42")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpmukmdowqnoe"]
+
+[ext_resource type="Texture2D" uid="uid://vcj0yuste583" path="res://Recursos_Fase/Vidas/800px-Heart_corazón.svg.png" id="1_q0m4l"]
+
+[node name="Vida" type="Sprite2D"]
+position = Vector2(42, 47)
+scale = Vector2(0.0689063, 0.06625)
+texture = ExtResource("1_q0m4l")

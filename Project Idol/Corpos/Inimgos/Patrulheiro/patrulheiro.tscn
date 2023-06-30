@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cseoyjq1fon66"]
+
+[ext_resource type="Texture2D" uid="uid://l8lrbvgexd1v" path="res://icon.svg" id="1_jgqi8"]
+[ext_resource type="Script" path="res://Corpos/Inimgos/Patrulheiro/patrulheiro.gd" id="1_kfiqb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybcxh"]
+size = Vector2(77.75, 93.25)
+
+[node name="Patrulheiro" type="Area2D"]
+position = Vector2(143, 106)
+script = ExtResource("1_kfiqb")
+
+[node name="ColisaoPatrulheiro" type="CollisionShape2D" parent="."]
+position = Vector2(-2.875, -0.625)
+shape = SubResource("RectangleShape2D_ybcxh")
+
+[node name="SpritePatrulheiro" type="Sprite2D" parent="."]
+position = Vector2(-3, -0.999996)
+scale = Vector2(0.625, 0.757813)
+texture = ExtResource("1_jgqi8")

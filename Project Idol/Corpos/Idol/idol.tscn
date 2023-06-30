@@ -8,16 +8,31 @@ radius = 23.0
 height = 140.0
 
 [node name="Idol" type="CharacterBody2D"]
-position = Vector2(268, 186)
+position = Vector2(362, 284)
 collision_mask = 2
 script = ExtResource("1_8skg5")
 
 [node name="Sprite_Idol" type="Sprite2D" parent="."]
-position = Vector2(-59, -37)
+position = Vector2(-3, -18)
 scale = Vector2(0.339111, 0.327637)
 texture = ExtResource("2_xmk3b")
 flip_h = true
 
 [node name="Colisao_Idol" type="CollisionShape2D" parent="."]
-position = Vector2(-54, -32)
+position = Vector2(-1, -11)
 shape = SubResource("CapsuleShape2D_l3tm3")
+
+[node name="TimerDano" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="TimerImunidade" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerImpulsoPulo" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="TimerDano" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerImunidade" to="." method="_on_timer_imunidade_timeout"]
+[connection signal="timeout" from="TimerImpulsoPulo" to="." method="_on_timer_impulso_pulo_timeout"]

@@ -1,49 +1,184 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdqwghrynfr76"]
+[gd_scene load_steps=14 format=3 uid="uid://1p8bn2v2w38c"]
 
 [ext_resource type="PackedScene" uid="uid://dxp6j87ob5nnv" path="res://Corpos/Idol/idol.tscn" id="1_0eqbk"]
-[ext_resource type="Script" path="res://Camera.gd" id="1_217pa"]
+[ext_resource type="Script" path="res://fase.gd" id="1_2y3r2"]
+[ext_resource type="Script" path="res://codigos_extras/Camera.gd" id="1_eh2xn"]
 [ext_resource type="Texture2D" uid="uid://l8lrbvgexd1v" path="res://icon.svg" id="2_nforj"]
+[ext_resource type="PackedScene" uid="uid://cseoyjq1fon66" path="res://Corpos/Inimgos/Patrulheiro/patrulheiro.tscn" id="4_v7qip"]
+[ext_resource type="PackedScene" uid="uid://cpmukmdowqnoe" path="res://Recursos_Fase/Vidas/Vida.tscn" id="6_acxi6"]
+[ext_resource type="PackedScene" uid="uid://yrykvn4k4pn3" path="res://Recursos_Fase/Plataformas/Caixa/caixa.tscn" id="6_qfsnn"]
+[ext_resource type="Script" path="res://codigos_extras/P_limit.gd" id="6_xk8qi"]
+[ext_resource type="PackedScene" uid="uid://cnt02vhbq1xbx" path="res://Recursos_Fase/Plataformas/Plataforma Flutuante/plataforma_flutuante.tscn" id="9_6sbyo"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_scn8t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g048m"]
-size = Vector2(2119, 127)
+size = Vector2(3825, 127)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wthyr"]
-size = Vector2(152, 995)
+size = Vector2(60, 995)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oykx8"]
+size = Vector2(7.77138, 163.741)
 
 [node name="Fase" type="Node2D"]
+script = ExtResource("1_2y3r2")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(711, 401)
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
+script = ExtResource("1_eh2xn")
 
 [node name="Idol" parent="." instance=ExtResource("1_0eqbk")]
-position = Vector2(213, 656)
+position = Vector2(229, 638)
 
-[node name="Camera2D" type="Camera2D" parent="Idol"]
-position = Vector2(500, -253)
-enabled = false
-drag_horizontal_enabled = true
-script = ExtResource("1_217pa")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Chao" type="StaticBody2D" parent="."]
 position = Vector2(195, 765)
 collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_scn8t")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(865.5, -7.5)
+[node name="ChaoColisao" type="CollisionShape2D" parent="Chao"]
+position = Vector2(1702.5, -7.5)
 shape = SubResource("RectangleShape2D_g048m")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(864, -3)
-scale = Vector2(16.5625, 1.02344)
+[node name="ChaoSprite" type="Sprite2D" parent="Chao"]
+position = Vector2(1704.5, -3)
+scale = Vector2(29.8203, 1.02344)
 texture = ExtResource("2_nforj")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="AtivaCamera" type="Area2D" parent="."]
 position = Vector2(702, 681)
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-11, -483)
+[node name="AtivaColisao" type="CollisionShape2D" parent="AtivaCamera"]
+position = Vector2(21, -483)
 shape = SubResource("RectangleShape2D_wthyr")
 
-[connection signal="primeiraMetade" from="Idol" to="Idol/Camera2D" method="_on_idol_primeira_metade"]
-[connection signal="body_entered" from="Area2D" to="Idol" method="_on_area_2d_body_entered"]
+[node name="Vidas" type="CanvasLayer" parent="."]
+
+[node name="GrupoV" type="CanvasGroup" parent="Vidas"]
+
+[node name="Vida1" parent="Vidas/GrupoV" instance=ExtResource("6_acxi6")]
+position = Vector2(34, 30)
+scale = Vector2(0.0519531, 0.049375)
+
+[node name="Vida2" parent="Vidas/GrupoV" instance=ExtResource("6_acxi6")]
+position = Vector2(84, 30)
+scale = Vector2(0.0519531, 0.049375)
+
+[node name="Vida3" parent="Vidas/GrupoV" instance=ExtResource("6_acxi6")]
+position = Vector2(134, 30)
+scale = Vector2(0.0519531, 0.049375)
+
+[node name="Vida4" parent="Vidas/GrupoV" instance=ExtResource("6_acxi6")]
+position = Vector2(184, 30)
+scale = Vector2(0.0519531, 0.049375)
+
+[node name="Vida5" parent="Vidas/GrupoV" instance=ExtResource("6_acxi6")]
+position = Vector2(234, 30)
+scale = Vector2(0.0519531, 0.049375)
+
+[node name="Caixa1" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(699, 629)
+
+[node name="P_limit_esq1" type="Area2D" parent="."]
+position = Vector2(757.849, 606.872)
+rotation = 0.000443663
+script = ExtResource("6_xk8qi")
+
+[node name="P_limit" type="CollisionShape2D" parent="P_limit_esq1"]
+shape = SubResource("RectangleShape2D_oykx8")
+
+[node name="Patrulheiro1" parent="." instance=ExtResource("4_v7qip")]
+position = Vector2(993, 646)
+rotation = 0.000443663
+
+[node name="P_limit_dir1" type="Area2D" parent="."]
+position = Vector2(1292, 609)
+rotation = 0.000443663
+script = ExtResource("6_xk8qi")
+
+[node name="P_limit" type="CollisionShape2D" parent="P_limit_dir1"]
+shape = SubResource("RectangleShape2D_oykx8")
+
+[node name="Caixa2" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(1350, 625)
+
+[node name="PlataformaFlutuante" parent="." instance=ExtResource("9_6sbyo")]
+position = Vector2(1038, 467)
+collision_layer = 3
+
+[node name="Caixa3" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(1760, 633)
+
+[node name="Caixa4" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(1879, 633)
+
+[node name="Caixa5" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(1879, 509)
+
+[node name="P_limit_esq2" type="Area2D" parent="."]
+position = Vector2(757.849, 606.872)
+rotation = 0.000443663
+script = ExtResource("6_xk8qi")
+
+[node name="P_limit" type="CollisionShape2D" parent="P_limit_esq2"]
+position = Vector2(1184.15, -0.397339)
+shape = SubResource("RectangleShape2D_oykx8")
+
+[node name="PlataformaFlutuante2" parent="." instance=ExtResource("9_6sbyo")]
+position = Vector2(2455, 265)
+collision_layer = 3
+
+[node name="PlataformaFlutuante3" parent="." instance=ExtResource("9_6sbyo")]
+position = Vector2(2622, 265)
+collision_layer = 3
+
+[node name="Patrulheiro2" parent="." instance=ExtResource("4_v7qip")]
+position = Vector2(2192, 646)
+rotation = 0.000443663
+
+[node name="Patrulheiro3" parent="." instance=ExtResource("4_v7qip")]
+position = Vector2(2663, 646)
+rotation = 0.000443663
+
+[node name="P_limit_dir2" type="Area2D" parent="."]
+position = Vector2(2809, 609)
+rotation = 0.000443663
+script = ExtResource("6_xk8qi")
+
+[node name="P_limit" type="CollisionShape2D" parent="P_limit_dir2"]
+shape = SubResource("RectangleShape2D_oykx8")
+
+[node name="Caixa6" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(2162, 301)
+
+[node name="Caixa7" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(2873, 628)
+
+[node name="Caixa8" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(2991, 628)
+
+[node name="Caixa9" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(2991, 499)
+
+[node name="Caixa10" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(3111, 628)
+
+[node name="Caixa11" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(3112, 501)
+
+[node name="Caixa12" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(3111, 371)
+
+[connection signal="morreu" from="Idol" to="Camera" method="_on_idol_morreu"]
+[connection signal="tomouDano" from="Idol" to="." method="_on_idol_tomou_dano"]
+[connection signal="body_entered" from="AtivaCamera" to="Camera" method="_on_ativa_camera_body_entered"]
+[connection signal="area_entered" from="P_limit_esq1" to="P_limit_esq1" method="_on_area_entered"]
+[connection signal="body_entered" from="Patrulheiro1" to="Idol" method="_on_patrulheiro_body_entered"]
+[connection signal="area_entered" from="P_limit_dir1" to="P_limit_dir1" method="_on_area_entered"]
+[connection signal="area_entered" from="P_limit_esq2" to="P_limit_esq2" method="_on_area_entered"]
+[connection signal="body_entered" from="Patrulheiro2" to="Idol" method="_on_patrulheiro_body_entered"]
+[connection signal="body_entered" from="Patrulheiro3" to="Idol" method="_on_patrulheiro_body_entered"]
+[connection signal="area_entered" from="P_limit_dir2" to="P_limit_dir2" method="_on_area_entered"]
