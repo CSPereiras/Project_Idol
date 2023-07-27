@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://1p8bn2v2w38c"]
+[gd_scene load_steps=15 format=3 uid="uid://1p8bn2v2w38c"]
 
 [ext_resource type="PackedScene" uid="uid://dxp6j87ob5nnv" path="res://Corpos/Idol/idol.tscn" id="1_0eqbk"]
 [ext_resource type="Script" path="res://fase.gd" id="1_2y3r2"]
@@ -9,11 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://yrykvn4k4pn3" path="res://Recursos_Fase/Plataformas/Caixa/caixa.tscn" id="6_qfsnn"]
 [ext_resource type="Script" path="res://codigos_extras/P_limit.gd" id="6_xk8qi"]
 [ext_resource type="PackedScene" uid="uid://cnt02vhbq1xbx" path="res://Recursos_Fase/Plataformas/Plataforma Flutuante/plataforma_flutuante.tscn" id="9_6sbyo"]
+[ext_resource type="PackedScene" uid="uid://cnnkejecjospn" path="res://Corpos/Inimgos/Atirador/atirador.tscn" id="10_cl0l2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_scn8t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g048m"]
-size = Vector2(3825, 127)
+size = Vector2(8000, 127)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wthyr"]
 size = Vector2(60, 995)
@@ -31,7 +32,7 @@ position_smoothing_speed = 1.0
 script = ExtResource("1_eh2xn")
 
 [node name="Idol" parent="." instance=ExtResource("1_0eqbk")]
-position = Vector2(229, 638)
+position = Vector2(205, 642)
 
 [node name="Chao" type="StaticBody2D" parent="."]
 position = Vector2(195, 765)
@@ -39,12 +40,12 @@ collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_scn8t")
 
 [node name="ChaoColisao" type="CollisionShape2D" parent="Chao"]
-position = Vector2(1702.5, -7.5)
+position = Vector2(3790, -7.5)
 shape = SubResource("RectangleShape2D_g048m")
 
 [node name="ChaoSprite" type="Sprite2D" parent="Chao"]
-position = Vector2(1704.5, -3)
-scale = Vector2(29.8203, 1.02344)
+position = Vector2(3787.5, -3)
+scale = Vector2(62.3672, 1.02344)
 texture = ExtResource("2_nforj")
 
 [node name="AtivaCamera" type="Area2D" parent="."]
@@ -110,16 +111,16 @@ position = Vector2(1038, 467)
 collision_layer = 3
 
 [node name="Caixa3" parent="." instance=ExtResource("6_qfsnn")]
-position = Vector2(1760, 633)
+position = Vector2(2010.15, 631)
 
 [node name="Caixa4" parent="." instance=ExtResource("6_qfsnn")]
-position = Vector2(1879, 633)
+position = Vector2(2129.15, 631)
 
 [node name="Caixa5" parent="." instance=ExtResource("6_qfsnn")]
-position = Vector2(1879, 509)
+position = Vector2(2127.15, 501)
 
 [node name="P_limit_esq2" type="Area2D" parent="."]
-position = Vector2(757.849, 606.872)
+position = Vector2(1008, 604.872)
 rotation = 0.000443663
 script = ExtResource("6_xk8qi")
 
@@ -128,23 +129,26 @@ position = Vector2(1184.15, -0.397339)
 shape = SubResource("RectangleShape2D_oykx8")
 
 [node name="PlataformaFlutuante2" parent="." instance=ExtResource("9_6sbyo")]
-position = Vector2(2455, 265)
+position = Vector2(2705.15, 263)
 collision_layer = 3
 
 [node name="PlataformaFlutuante3" parent="." instance=ExtResource("9_6sbyo")]
-position = Vector2(2622, 265)
+position = Vector2(2872.15, 263)
 collision_layer = 3
 
+[node name="Atirador1" parent="." instance=ExtResource("10_cl0l2")]
+position = Vector2(2916, 134)
+
 [node name="Patrulheiro2" parent="." instance=ExtResource("4_v7qip")]
-position = Vector2(2192, 646)
+position = Vector2(2442.15, 644)
 rotation = 0.000443663
 
 [node name="Patrulheiro3" parent="." instance=ExtResource("4_v7qip")]
-position = Vector2(2663, 646)
+position = Vector2(2913.15, 644)
 rotation = 0.000443663
 
 [node name="P_limit_dir2" type="Area2D" parent="."]
-position = Vector2(2809, 609)
+position = Vector2(3059.15, 607)
 rotation = 0.000443663
 script = ExtResource("6_xk8qi")
 
@@ -152,25 +156,70 @@ script = ExtResource("6_xk8qi")
 shape = SubResource("RectangleShape2D_oykx8")
 
 [node name="Caixa6" parent="." instance=ExtResource("6_qfsnn")]
-position = Vector2(2162, 301)
+position = Vector2(2412.15, 299)
 
 [node name="Caixa7" parent="." instance=ExtResource("6_qfsnn")]
-position = Vector2(2873, 628)
+position = Vector2(3123.15, 626)
 
 [node name="Caixa8" parent="." instance=ExtResource("6_qfsnn")]
-position = Vector2(2991, 628)
+position = Vector2(3241.15, 626)
 
 [node name="Caixa9" parent="." instance=ExtResource("6_qfsnn")]
-position = Vector2(2991, 499)
+position = Vector2(3241.15, 497)
 
 [node name="Caixa10" parent="." instance=ExtResource("6_qfsnn")]
-position = Vector2(3111, 628)
+position = Vector2(3361.15, 626)
 
 [node name="Caixa11" parent="." instance=ExtResource("6_qfsnn")]
-position = Vector2(3112, 501)
+position = Vector2(3362.15, 499)
 
 [node name="Caixa12" parent="." instance=ExtResource("6_qfsnn")]
-position = Vector2(3111, 371)
+position = Vector2(3361.15, 369)
+
+[node name="P_limit_esq3" type="Area2D" parent="."]
+position = Vector2(6118.03, 1215.36)
+rotation = 0.000887326
+script = ExtResource("6_xk8qi")
+
+[node name="P_limit" type="CollisionShape2D" parent="P_limit_esq3"]
+position = Vector2(-2394.91, -993.233)
+shape = SubResource("RectangleShape2D_oykx8")
+
+[node name="PlataformaFlutuante4" parent="." instance=ExtResource("9_6sbyo")]
+position = Vector2(3795, 334)
+collision_layer = 3
+
+[node name="Patrulheiro4" parent="." instance=ExtResource("4_v7qip")]
+position = Vector2(3898, 258)
+rotation = 0.000443663
+
+[node name="PlataformaFlutuante5" parent="." instance=ExtResource("9_6sbyo")]
+position = Vector2(3962, 334)
+collision_layer = 3
+
+[node name="P_limit_dir4" type="Area2D" parent="."]
+position = Vector2(4042, 212)
+rotation = 0.000887326
+script = ExtResource("6_xk8qi")
+
+[node name="P_limit" type="CollisionShape2D" parent="P_limit_dir4"]
+position = Vector2(-1.9917, 10.0019)
+shape = SubResource("RectangleShape2D_oykx8")
+
+[node name="Caixa13" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(4351, 337)
+
+[node name="Caixa14" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(4801, 337)
+
+[node name="Caixa15" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(5271, 337)
+
+[node name="Caixa16" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(6271, 337)
+
+[node name="Caixa17" parent="." instance=ExtResource("6_qfsnn")]
+position = Vector2(5761, 337)
 
 [connection signal="morreu" from="Idol" to="Camera" method="_on_idol_morreu"]
 [connection signal="tomouDano" from="Idol" to="." method="_on_idol_tomou_dano"]
@@ -182,3 +231,6 @@ position = Vector2(3111, 371)
 [connection signal="body_entered" from="Patrulheiro2" to="Idol" method="_on_patrulheiro_body_entered"]
 [connection signal="body_entered" from="Patrulheiro3" to="Idol" method="_on_patrulheiro_body_entered"]
 [connection signal="area_entered" from="P_limit_dir2" to="P_limit_dir2" method="_on_area_entered"]
+[connection signal="area_entered" from="P_limit_esq3" to="P_limit_esq3" method="_on_area_entered"]
+[connection signal="body_entered" from="Patrulheiro4" to="Idol" method="_on_patrulheiro_body_entered"]
+[connection signal="area_entered" from="P_limit_dir4" to="P_limit_dir4" method="_on_area_entered"]
