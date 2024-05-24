@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Projetc Idol"
 run/main_scene="res://fase.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0, 0.352941, 1)
 config/icon="res://icon.svg"
 
@@ -25,7 +25,7 @@ window/size/viewport_height=800
 
 accept={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":88,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":90,"physical_keycode":0,"key_label":0,"unicode":122,"echo":false,"script":null)
 ]
 }
 left={
@@ -38,7 +38,29 @@ right={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194321,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+attack={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":88,"key_label":0,"unicode":120,"echo":false,"script":null)
+]
+}
+tiro={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":67,"key_label":0,"unicode":99,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
 2d_physics/layer_1="Idol"
+2d_physics/layer_2="inimigos_atingiveis"
+2d_physics/layer_3="Tiro da Idol"
+2d_physics/layer_4="Plataformas"
+2d_physics/layer_5="Tiro do Atirador"
+2d_physics/layer_6="limite_do_patrulheiro"
+2d_physics/layer_7="inimigos_nao_atingiveis"
+2d_physics/layer_8="chao"
+2d_physics/layer_9="lava"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

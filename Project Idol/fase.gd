@@ -1,7 +1,8 @@
 extends Node2D
 
-const parteCaminho = "/root/Fase/Vidas/GrupoV/"
+const parteCaminho = "/root/Fase/Atributos/GrupoV/"
 
+var jogoValido = true
 var numVidasReservas = 4
 
 @onready var vidas = [get_node(parteCaminho + "Vida1"), get_node(parteCaminho + "Vida2"), 
@@ -10,8 +11,17 @@ var numVidasReservas = 4
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	if jogoValido:
+		atualizaCarregaTiro()
 
 func _on_idol_tomou_dano():
-	vidas[numVidasReservas].queue_free()
-	numVidasReservas -= 1
+	for i in range(numVidasReservas, $Idol.retornaVidas()-1, -1):
+		if(i>=0):
+			vidas[i].queue_free()
+	numVidasReservas = $Idol.retornaVidas()-1
+
+func atualizaCarregaTiro():
+	$Atributos/CarregaTiro.value = $Idol.retornaCarregamento()
+
+func _on_idol_morreu():
+	jogoValido = false

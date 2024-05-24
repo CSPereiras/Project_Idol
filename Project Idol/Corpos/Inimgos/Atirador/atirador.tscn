@@ -1,22 +1,55 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnnkejecjospn"]
+[gd_scene load_steps=5 format=3 uid="uid://cnnkejecjospn"]
 
 [ext_resource type="Texture2D" uid="uid://bgsk8ppsvxyn4" path="res://Corpos/Inimgos/Atirador/cyberpunk-robot-holding-gun-isolated-3d-render-png.png" id="1_eicyf"]
 [ext_resource type="Script" path="res://Corpos/Inimgos/Atirador/atirador.gd" id="1_w0ejv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_haidc"]
-size = Vector2(44, 158)
+size = Vector2(44, 192)
 
-[node name="Atirador" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1w8kl"]
+size = Vector2(709, 485.5)
+
+[node name="Atirador" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_w0ejv")
 
 [node name="CollisionAtirador" type="CollisionShape2D" parent="."]
-position = Vector2(3, 12)
+position = Vector2(3, -5)
 shape = SubResource("RectangleShape2D_haidc")
 
 [node name="SpriteAtirador" type="Sprite2D" parent="."]
-position = Vector2(3, 12)
-scale = Vector2(0.140948, 0.105208)
+position = Vector2(3, 1.25001)
+scale = Vector2(0.130012, 0.116927)
 texture = ExtResource("1_eicyf")
+flip_h = true
 
-[node name="PosicaoArma" type="Marker2D" parent="."]
-position = Vector2(-58, -50)
+[node name="PosicaoTiroEsq" type="Marker2D" parent="."]
+position = Vector2(-53, -70)
+
+[node name="PosicaoTiroDir" type="Marker2D" parent="."]
+position = Vector2(70, -70)
+
+[node name="TimerTiro" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="VisaoEsq" type="Area2D" parent="."]
+position = Vector2(-704, -164)
+
+[node name="EsqCol" type="CollisionShape2D" parent="VisaoEsq"]
+position = Vector2(348.5, -19.75)
+shape = SubResource("RectangleShape2D_1w8kl")
+
+[node name="VisaoDir" type="Area2D" parent="."]
+position = Vector2(353, -164)
+
+[node name="DirCol" type="CollisionShape2D" parent="VisaoDir"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_1w8kl")
+
+[connection signal="timeout" from="TimerTiro" to="." method="_on_timer_tiro_timeout"]
+[connection signal="area_entered" from="VisaoEsq" to="." method="_on_visao_esq_area_entered"]
+[connection signal="body_entered" from="VisaoEsq" to="." method="_on_visao_esq_body_entered"]
+[connection signal="body_exited" from="VisaoEsq" to="." method="_on_visao_esq_body_exited"]
+[connection signal="body_entered" from="VisaoDir" to="." method="_on_visao_dir_body_entered"]
+[connection signal="body_exited" from="VisaoDir" to="." method="_on_visao_dir_body_exited"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxs0mp8q61ln4"]
+
+[ext_resource type="Script" path="res://Corpos/Inimgos/Atirador/tiro_atirador.gd" id="1_8obwm"]
+[ext_resource type="Texture2D" uid="uid://by0oc8mi4bbfy" path="res://Corpos/Inimgos/Atirador/hadouken-hadoken-pixel-art-ryu-png-favpng-qAX6iF2bsBaZG5nPhZmZ7GYWt.png" id="1_qyip3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f0pmo"]
+radius = 21.0238
+
+[node name="TiroAtirador" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_8obwm")
+
+[node name="SpriteTiro" type="Sprite2D" parent="."]
+position = Vector2(-1.5, -0.499999)
+scale = Vector2(0.0963415, 0.119141)
+texture = ExtResource("1_qyip3")
+
+[node name="ColisaoTiro" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_f0pmo")
+
+[node name="NotificaSeTaNaTela" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="NotificaSeTaNaTela" to="." method="_on_notifica_se_ta_na_tela_screen_exited"]

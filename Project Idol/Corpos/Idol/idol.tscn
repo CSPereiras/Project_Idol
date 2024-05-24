@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxp6j87ob5nnv"]
+[gd_scene load_steps=6 format=3 uid="uid://dxp6j87ob5nnv"]
 
 [ext_resource type="Script" path="res://Corpos/Idol/Idol.gd" id="1_8skg5"]
 [ext_resource type="Texture2D" uid="uid://rvrk6mioih81" path="res://Corpos/Idol/6fd1563fc35d06eddc1999282e813e2e-linda-garota-de-anime-com-cabelo-roxo.png" id="2_xmk3b"]
+[ext_resource type="Texture2D" uid="uid://dnr1m2g1frc0r" path="res://Corpos/Idol/espada.png" id="3_mvf71"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l3tm3"]
-radius = 23.0
+radius = 16.0
 height = 140.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y25ab"]
+size = Vector2(64, 26)
 
 [node name="Idol" type="CharacterBody2D"]
 position = Vector2(362, 284)
@@ -19,8 +23,18 @@ texture = ExtResource("2_xmk3b")
 flip_h = true
 
 [node name="Colisao_Idol" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -11)
+position = Vector2(-4, -11)
 shape = SubResource("CapsuleShape2D_l3tm3")
+
+[node name="PosicaoTiroEsq" type="Marker2D" parent="."]
+position = Vector2(24, -19)
+
+[node name="PosicaoTiroDir" type="Marker2D" parent="."]
+position = Vector2(-28, -19)
+
+[node name="TimerTiro" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
 
 [node name="TimerDano" type="Timer" parent="."]
 wait_time = 0.05
@@ -33,6 +47,34 @@ one_shot = true
 wait_time = 1.5
 one_shot = true
 
+[node name="Espada" type="Area2D" parent="."]
+position = Vector2(55, -17)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+
+[node name="Colisao_Espada" type="CollisionShape2D" parent="Espada"]
+shape = SubResource("RectangleShape2D_y25ab")
+
+[node name="Espada2" type="Sprite2D" parent="Espada"]
+visible = false
+rotation = 0.772839
+scale = Vector2(0.375, 0.35625)
+texture = ExtResource("3_mvf71")
+
+[node name="EspadaNaDireita" type="Marker2D" parent="Espada"]
+position = Vector2(55, -17)
+
+[node name="EspadaNaEsquerda" type="Marker2D" parent="Espada"]
+position = Vector2(-55, -17)
+
+[node name="TimerEspada" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="TimerTiro" to="." method="_on_timer_tiro_timeout"]
 [connection signal="timeout" from="TimerDano" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="TimerImunidade" to="." method="_on_timer_imunidade_timeout"]
 [connection signal="timeout" from="TimerImpulsoPulo" to="." method="_on_timer_impulso_pulo_timeout"]
+[connection signal="area_entered" from="Espada" to="." method="_on_espada_area_entered"]
+[connection signal="timeout" from="TimerEspada" to="." method="_on_timer_espada_timeout"]
