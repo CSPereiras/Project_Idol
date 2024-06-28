@@ -7,7 +7,7 @@
 size = Vector2(44, 192)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1w8kl"]
-size = Vector2(709, 485.5)
+size = Vector2(625, 485.5)
 
 [node name="Atirador" type="Area2D"]
 collision_layer = 2
@@ -37,16 +37,17 @@ autostart = true
 position = Vector2(-704, -164)
 
 [node name="EsqCol" type="CollisionShape2D" parent="VisaoEsq"]
-position = Vector2(348.5, -19.75)
+position = Vector2(390.5, -19.75)
 shape = SubResource("RectangleShape2D_1w8kl")
 
 [node name="VisaoDir" type="Area2D" parent="."]
 position = Vector2(353, -164)
 
 [node name="DirCol" type="CollisionShape2D" parent="VisaoDir"]
-position = Vector2(0, -20)
+position = Vector2(-38, -20)
 shape = SubResource("RectangleShape2D_1w8kl")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="TimerTiro" to="." method="_on_timer_tiro_timeout"]
 [connection signal="area_entered" from="VisaoEsq" to="." method="_on_visao_esq_area_entered"]
 [connection signal="body_entered" from="VisaoEsq" to="." method="_on_visao_esq_body_entered"]

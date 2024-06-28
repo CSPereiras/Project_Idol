@@ -1,22 +1,23 @@
 extends CharacterBody2D
 
-const SPEED = 300
-const JUMP_VELOCITY = 13 #-500.0
-const TIRO = preload("res://Corpos/Idol/Shoot/shoot.tscn")
+const SPEED = 300 #velocidade de locomoção
+const JUMP_VELOCITY = 13 #velocidade do pulo
+const TIRO = preload("res://Corpos/Idol/Shoot/shoot.tscn") #nó do tiro
+const MAXVIDAS = 5 #o máximo de vidas queaIdol pode ter
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var vidas = 5
+var vidas = 5 #auto-explicativo
 var pulo = 0
-var imunidade = false
-var impulsoDano = false
-var impulsoPulo = true
-var podePular = true
-var podeAtirar = true
-var tiro 
+var imunidade = false #indica se leva dano ou não
+var impulsoDano = false #indica quando a Idol terá impulso por dano
+var impulsoPulo = true #indica quando a Idol terá impulso por pulo
+var podePular = true #indica se a Idol poderá pular 
+var podeAtirar = true #indica se a Idol poderá atirar
 
-signal morreu
-signal tomouDano
+signal morreu #indica que morreu
+signal tomouDano #indica que tomou dano
+signal pegouVida #indica que pegou vida
 
 func _physics_process(_delta):
 	# Add the gravity
@@ -56,7 +57,8 @@ func _physics_process(_delta):
 		if is_on_wall() and ((direction == -1 and get_wall_normal().x > 0) or (direction == 1 and get_wall_normal().x < 0)):
 			direction = 0
 		velocity.x = direction * SPEED
-		$Sprite_Idol.set_flip_h(direction+1)
+		if direction:
+			$Sprite_Idol.set_flip_h(direction+1)
 	elif impulsoDano:
 		if direction:
 			velocity.x = SPEED * 3 * -direction
@@ -85,14 +87,35 @@ func jump_cut():
 #tira a vida da Idol
 func dano(dano):
 	impulsoDano = true
+	$TimerAnimaDano.start()
 	$TimerDano.start()
 	vidas -= dano
 	imunidade = true
 	$TimerImunidade.start()
 	emit_signal("tomouDano")
 
+#gera animação que indica que a Idol acabou de tomar dano
+func _on_timer_anima_dano_timeout():
+	if $Sprite_Idol.is_visible():
+		$Sprite_Idol.hide()
+	else:
+		$Sprite_Idol.show()
+
+#adiciona uma vida a mais
+func adicionaVida():
+	if vidas < MAXVIDAS:
+		vidas += 1
+		emit_signal("pegouVida")
+
+#retona o número de vidas
 func retornaVidas():
 	return vidas
+
+#verifica se a Idol tem vidas restantes e a mata caso contrário
+func verifica_vida():
+	if vidas < 1:
+		emit_signal("morreu")
+		queue_free()
 
 #para com o impulso da Idol ao tomar dano
 func _on_timer_timeout():
@@ -101,6 +124,9 @@ func _on_timer_timeout():
 #termina a imunidade da Idol ao tomar dano
 func _on_timer_imunidade_timeout():
 	imunidade = false
+	$TimerAnimaDano.stop()
+	if !$Sprite_Idol.is_visible():
+		$Sprite_Idol.show()
 
 #termina com o impulso do pulo
 func _on_timer_impulso_pulo_timeout():
@@ -143,25 +169,28 @@ func atira():
 		podeAtirar = false
 		$TimerTiro.start()
 
+#verifica para que lado o tiro deverá seguir
 func verificaLadoTiro():
 	if $Sprite_Idol.flip_h:
 		return 1
 	else:
 		return -1
 
+#define qual lado o tiro deverá seguir
 func defineLadoTiro():
 	if verificaLadoTiro() > 0:
 		return $PosicaoTiroEsq.global_position
 	else:
 		return $PosicaoTiroDir.global_position
 
+#devolve a permissão para atirar
 func _on_timer_tiro_timeout():
 	podeAtirar = true
 
+#retorna o status atual da "mana" do tiro
 func retornaCarregamento():
 	return 30 - $TimerTiro.get_time_left()
 
-func verifica_vida():
-	if vidas < 1:
-		emit_signal("morreu")
-		queue_free()
+#verifica se a Idol entra em contato com algum tilemap danoso
+func _on_area_dano_espinho_body_entered(body):
+	dano(vidas)

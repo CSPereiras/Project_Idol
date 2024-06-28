@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxp6j87ob5nnv"]
+[gd_scene load_steps=7 format=3 uid="uid://dxp6j87ob5nnv"]
 
 [ext_resource type="Script" path="res://Corpos/Idol/Idol.gd" id="1_8skg5"]
 [ext_resource type="Texture2D" uid="uid://rvrk6mioih81" path="res://Corpos/Idol/6fd1563fc35d06eddc1999282e813e2e-linda-garota-de-anime-com-cabelo-roxo.png" id="2_xmk3b"]
@@ -8,12 +8,16 @@
 radius = 16.0
 height = 140.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3foda"]
+radius = 17.0
+height = 144.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y25ab"]
 size = Vector2(64, 26)
 
 [node name="Idol" type="CharacterBody2D"]
 position = Vector2(362, 284)
-collision_mask = 2
+collision_mask = 522
 script = ExtResource("1_8skg5")
 
 [node name="Sprite_Idol" type="Sprite2D" parent="."]
@@ -32,6 +36,13 @@ position = Vector2(24, -19)
 [node name="PosicaoTiroDir" type="Marker2D" parent="."]
 position = Vector2(-28, -19)
 
+[node name="AreaDanoEspinho" type="Area2D" parent="."]
+position = Vector2(-4, -11)
+collision_mask = 256
+
+[node name="ColisaoADE" type="CollisionShape2D" parent="AreaDanoEspinho"]
+shape = SubResource("CapsuleShape2D_3foda")
+
 [node name="TimerTiro" type="Timer" parent="."]
 wait_time = 30.0
 one_shot = true
@@ -46,6 +57,9 @@ one_shot = true
 [node name="TimerImpulsoPulo" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="TimerAnimaDano" type="Timer" parent="."]
+wait_time = 0.1
 
 [node name="Espada" type="Area2D" parent="."]
 position = Vector2(55, -17)
@@ -72,9 +86,11 @@ position = Vector2(-55, -17)
 wait_time = 0.2
 one_shot = true
 
+[connection signal="body_entered" from="AreaDanoEspinho" to="." method="_on_area_dano_espinho_body_entered"]
 [connection signal="timeout" from="TimerTiro" to="." method="_on_timer_tiro_timeout"]
 [connection signal="timeout" from="TimerDano" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="TimerImunidade" to="." method="_on_timer_imunidade_timeout"]
 [connection signal="timeout" from="TimerImpulsoPulo" to="." method="_on_timer_impulso_pulo_timeout"]
+[connection signal="timeout" from="TimerAnimaDano" to="." method="_on_timer_anima_dano_timeout"]
 [connection signal="area_entered" from="Espada" to="." method="_on_espada_area_entered"]
 [connection signal="timeout" from="TimerEspada" to="." method="_on_timer_espada_timeout"]

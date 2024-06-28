@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b71nkh6x1frtf"]
+
+[ext_resource type="Script" path="res://Recursos_Fase/Vidas/Vida_Nova.gd" id="1_ag3nl"]
+[ext_resource type="Texture2D" uid="uid://vcj0yuste583" path="res://Recursos_Fase/Vidas/coracao.png" id="2_qpkro"]
+
+[node name="vida_nova" type="Area2D"]
+collision_layer = 512
+script = ExtResource("1_ag3nl")
+
+[node name="SpriteVidaNova" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.0954687, 0.0896875)
+texture = ExtResource("2_qpkro")
+
+[node name="ColisaoVidaNova" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -20, 13, -27, 30, -23, 33, -10, 28, 4, 3, 29, -29, 2, -33, -13, -22, -28)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

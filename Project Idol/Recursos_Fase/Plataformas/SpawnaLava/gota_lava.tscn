@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcok6qlv2cmp0"]
+
+[ext_resource type="Script" path="res://Recursos_Fase/Plataformas/SpawnaLava/gota_lava.gd" id="1_h8gat"]
+[ext_resource type="Texture2D" uid="uid://daw7hhkm8c6mk" path="res://Recursos_Fase/Plataformas/SpawnaLava/gotalava.png" id="2_e25ws"]
+
+[node name="GotaLava" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_h8gat")
+
+[node name="SpriteGL" type="Sprite2D" parent="."]
+scale = Vector2(0.130859, 0.144531)
+texture = ExtResource("2_e25ws")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-5.96046e-08, -1)
+scale = Vector2(1.61058, 1.84028)
+polygon = PackedVector2Array(0, -19, 11, -13, 13, -6, 9, 4, 3.70083e-08, 17.9321, -8, 5, -13, -6, -10, -14)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

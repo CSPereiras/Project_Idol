@@ -6,7 +6,7 @@
 size = Vector2(117, 129)
 
 [node name="Caixa" type="StaticBody2D"]
-collision_layer = 3
+collision_layer = 10
 
 [node name="ColisaoCaixa" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 2)

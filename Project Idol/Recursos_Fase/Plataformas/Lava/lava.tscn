@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgewyg6xtiijy"]
+[gd_scene load_steps=4 format=3 uid="uid://btmaflvdc31m7"]
 
-[ext_resource type="Texture2D" uid="uid://ckea3fenvt7em" path="res://Recursos_Fase/Plataformas/Lava/laval-planet-tilesetv1.jpg" id="1_kojar"]
+[ext_resource type="Texture2D" uid="uid://ckea3fenvt7em" path="res://Recursos_Fase/Plataformas/Lava/laval-planet-tilesetv1.jpg" id="1_ndx7h"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3mgh7"]
-texture = ExtResource("1_kojar")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3013"]
+texture = ExtResource("1_ndx7h")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -793,15 +793,19 @@ texture = ExtResource("1_kojar")
 6:8/0 = 0
 6:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:8/0/physics_layer_0/angular_velocity = 0.0
+6:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:8/0 = 0
 7:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:8/0/physics_layer_0/angular_velocity = 0.0
+7:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:8/0 = 0
 8:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:8/0/physics_layer_0/angular_velocity = 0.0
+8:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:8/0 = 0
 9:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:8/0/physics_layer_0/angular_velocity = 0.0
+9:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:8/0 = 0
 10:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:8/0/physics_layer_0/angular_velocity = 0.0
@@ -889,15 +893,19 @@ texture = ExtResource("1_kojar")
 6:9/0 = 0
 6:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:9/0/physics_layer_0/angular_velocity = 0.0
+6:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:9/0 = 0
 7:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:9/0/physics_layer_0/angular_velocity = 0.0
+7:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:9/0 = 0
 8:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:9/0/physics_layer_0/angular_velocity = 0.0
+8:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:9/0 = 0
 9:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:9/0/physics_layer_0/angular_velocity = 0.0
+9:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:9/0 = 0
 10:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:9/0/physics_layer_0/angular_velocity = 0.0
@@ -2309,10 +2317,10 @@ texture = ExtResource("1_kojar")
 31:23/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 31:23/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="TileSet" id="TileSet_g3meu"]
+[sub_resource type="TileSet" id="TileSet_d5334"]
 physics_layer_0/collision_layer = 256
-sources/0 = SubResource("TileSetAtlasSource_3mgh7")
+sources/0 = SubResource("TileSetAtlasSource_l3013")
 
-[node name="Lava" type="TileMap"]
-tile_set = SubResource("TileSet_g3meu")
+[node name="Lava" type="TileMap" groups=["kill_idol"]]
+tile_set = SubResource("TileSet_d5334")
 format = 2
