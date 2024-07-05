@@ -4,6 +4,7 @@ const TIRO = preload("res://Corpos/Inimgos/Atirador/tiro_atirador.tscn")
 
 var vida = 3 #auto-explicativo
 var podeAtirar = false #indica a permissão de tiro do atirador
+var taNaTela = false #indica se atirador aparece na tela
 var alvo #variavel para armazenar a referência do alvo quando a mesma estiver no campo de visão
 var ladoTiro #lado que o tiro deverá seguir
 var posicaoTiro #posição da arma do tiro
@@ -28,7 +29,7 @@ func _on_body_entered(body):
 
 #faz o atirador atira quando isso deve ser feito
 func _on_timer_tiro_timeout():
-	if podeAtirar:
+	if podeAtirar and taNaTela:
 		var instanciaDoTiro;
 		instanciaDoTiro = TIRO.instantiate()
 		instanciaDoTiro.defineAlvo(alvo)
@@ -64,6 +65,12 @@ func _on_visao_dir_body_exited(body):
 #muda a permissão do tiro
 func permisaoTiro():
 	podeAtirar = not podeAtirar
+
+#estas funções atualizando o status sobre se o atirador tá na tela ou não
+func _on_notificador_atirador_screen_entered():
+	taNaTela = true
+func _on_notificador_atirador_screen_exited():
+	taNaTela = false
 
 #define o alvo quando detectado
 func atribuiAlvo(a):

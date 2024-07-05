@@ -47,6 +47,8 @@ position = Vector2(353, -164)
 position = Vector2(-38, -20)
 shape = SubResource("RectangleShape2D_1w8kl")
 
+[node name="NotificadorAtirador" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="TimerTiro" to="." method="_on_timer_tiro_timeout"]
 [connection signal="area_entered" from="VisaoEsq" to="." method="_on_visao_esq_area_entered"]
@@ -54,3 +56,5 @@ shape = SubResource("RectangleShape2D_1w8kl")
 [connection signal="body_exited" from="VisaoEsq" to="." method="_on_visao_esq_body_exited"]
 [connection signal="body_entered" from="VisaoDir" to="." method="_on_visao_dir_body_entered"]
 [connection signal="body_exited" from="VisaoDir" to="." method="_on_visao_dir_body_exited"]
+[connection signal="screen_entered" from="NotificadorAtirador" to="." method="_on_notificador_atirador_screen_entered"]
+[connection signal="screen_exited" from="NotificadorAtirador" to="." method="_on_notificador_atirador_screen_exited"]
