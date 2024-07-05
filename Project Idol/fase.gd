@@ -12,6 +12,9 @@ var numVidasReservas = 4 #indica quantas vidas tem alem da que está senfo utili
 	get_node(PARTECAMINHO + "Vida3"), get_node(PARTECAMINHO + "Vida4"), 
 	get_node(PARTECAMINHO + "Vida5")]
 
+func _ready():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if jogoValido:
